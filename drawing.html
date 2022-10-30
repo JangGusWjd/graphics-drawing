@@ -1,0 +1,122 @@
+<!-- drawing program 간단한 그림판 구현하기 - drawing.html
+과목: 컴퓨터 그래픽스
+분반: 1분반
+학번: 32203928
+학과: 소프트웨어학과
+이름: 장현정
+ -->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Drawing Program</title>
+    <style>
+      body {
+        width: 100%;
+        height: 80vh;
+        display: flex;
+      }
+      .select-form {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        margin-left: 5px;
+      }
+      select {
+        margin-bottom: 10%;
+      }
+      span {
+        font-weight: 800;
+        padding-bottom: 3px;
+      }
+      button {
+        width: 100%;
+        height: 5%;
+        border: 0;
+        border-radius: 25px;
+        background: rgb(99, 180, 255);
+        color: white;
+        font-size: 15px;
+        font-weight: 800;
+      }
+    </style>
+  </head>
+  <script id="vertex-shader" type="x-shader/x-vertex">
+    attribute vec4 vPosition;
+    attribute vec4 vColor;
+    varying vec4 fColor;
+
+    void main(){
+        gl_Position = vPosition;
+        fColor = vColor;
+        gl_PointSize = 5.0;
+    }
+  </script>
+
+  <script id="fragment-shader" type="x-shader/x-fragment">
+    precision mediump float;
+    varying vec4 fColor;
+
+    void main(){
+        gl_FragColor = fColor;
+    }
+  </script>
+  <script src="./common/initShaders.js"></script>
+  <script src="./common/MV.js"></script>
+  <script src="./common/webgl-utils.js"></script>
+  <script src="drawing.js"></script>
+  <body>
+    <div>
+      <canvas id="canvas" width="600" height="600"></canvas>
+    </div>
+    <div class="select-form">
+      <span>Color</span>
+      <select id="color" size="9">
+        <option value="0">Black</option>
+        <option value="1">Red</option>
+        <option value="2">Orange</option>
+        <option value="3">Yellow</option>
+        <option value="4">Green</option>
+        <option value="5">Blue</option>
+        <option value="6">Purple</option>
+        <option value="7">White</option>
+        <option value="8">Rainbow</option>
+      </select>
+      <span>Shape</span>
+      <select id="shape" size="3">
+        <option value="0">Line</option>
+        <option value="1">Triangle</option>
+        <option value="2">Rectangle-Line</option>
+      </select>
+      <span>Line Style</span>
+      <label
+        ><input
+          id="line1"
+          type="checkbox"
+          name="line"
+          value="Connected"
+          onclick="clickOne(this)"
+        />Connected</label
+      >
+      <label
+        ><input
+          id="line2"
+          type="checkbox"
+          name="line"
+          value="Seperated"
+          onclick="clickOne(this)"
+        />Separated</label
+      >
+      <span>Background Color</span>
+      <select id="background" size="5">
+        <option value="0">Black BG</option>
+        <option value="1">Grey BG</option>
+        <option value="2">White BG</option>
+        <option value="3">LightBlue BG</option>
+        <option value="4">LightYellow BG</option>
+      </select>
+      <button id="clearBtn">화면 지우기</button>
+    </div>
+  </body>
+</html>
