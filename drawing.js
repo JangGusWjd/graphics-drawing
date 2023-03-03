@@ -1,10 +1,3 @@
-// drawing program 간단한 그림판 구현하기 - drawing.js
-// 과목: 컴퓨터 그래픽스
-// 분반: 1분반
-// 학번: 32203928
-// 학과: 소프트웨어학과
-// 이름: 장현정
-
 let gl;
 const maxNumTriangles = 300;
 const maxNumVertices = 3 * maxNumTriangles;
